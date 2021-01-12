@@ -59,12 +59,7 @@ train_data["last_new_job"] = train_data["last_new_job"].fillna("Not Reported")
 train_data["company_size"] = train_data["company_size"].replace("10/49","10-49")
 
 #train_data['experience']
-for i in range(len(train_data['experience'])):
-    if train_data['experience'][i] in ["1","2","3","4","5"]:
-        train_data['experience'][i] = "1-5"
-    elif train_data['experience'][i] in ["6","7","8","9","10"]:
-        train_data['experience'][i] = "6-10"
-    elif train_data['experience'][i] in ["11","12","13","14","15"]:
-        train_data['experience'][i] = "11-15"
-    elif train_data['experience'][i] in ["16","17","18","19","20"]:
-        train_data['experience'][i] = "16-20"
+train_data['experience'] = train_data['experience'].replace(["1","2","3","4","5"],"1-5")
+train_data['experience'] = train_data['experience'].replace(["6","7","8","9","10"],"6-10")
+train_data['experience'] = train_data['experience'].replace(["11","12","13","14","15"],"11-15")
+train_data['experience'] = train_data['experience'].replace(["16","17","18","19","20"],"16-20")
