@@ -21,18 +21,13 @@ train_data.head(10)
 
 train_data.describe(include='all')
 
+train_data.dtypes
+
 #count the NAs in the train data
 train_data.isnull().sum()
 
 #Drop those who are missing information about their experience
-train_data_1 = """
-    SELECT *
-    FROM train_data
-    WHERE experience is not null;
-    """
-train_data_1 = train_data_1.lower()    
-#Execute your SQL command against the pandas frame
-sql.sqldf(train_data_1, locals())
+train_data = train_data.dropna(subset=['experience'])
 
 #look specifically at the enrolled_university, education_level, and the major_discipline data
 q = """
@@ -45,10 +40,11 @@ q = """
 sql.sqldf(q.lower(), locals()).head(15)
 #All of those who don't have a major_discipline were undergrad students or did not attend college
 
+#Look for mispelled values or labels
 for i in train_data:
     print(train_data[i].unique())
     
-#handle the NAs
+#Handle the NAs
 train_data["gender"] = train_data["gender"].fillna("Not Reported")
 train_data["major_discipline"] = train_data[train_data.enrolled_university == "no_enrollment"]["major_discipline"].fillna("No Major")
 train_data["major_discipline"] = train_data["major_discipline"].fillna("Not Reported")
@@ -56,9 +52,10 @@ train_data["company_size"] = train_data["company_size"].fillna("Not Reported")
 train_data["company_type"] = train_data["company_type"].fillna("Not Reported")
 train_data["last_new_job"] = train_data["last_new_job"].fillna("Not Reported")
 
+#Make the labels' form in company_size consistent
 train_data["company_size"] = train_data["company_size"].replace("10/49","10-49")
 
-#train_data['experience']
+#transform the experience's data
 train_data['experience'] = train_data['experience'].replace(["1","2","3","4","5"],"1-5")
 train_data['experience'] = train_data['experience'].replace(["6","7","8","9","10"],"6-10")
 train_data['experience'] = train_data['experience'].replace(["11","12","13","14","15"],"11-15")
