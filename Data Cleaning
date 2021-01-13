@@ -9,21 +9,24 @@ train_data.describe(include='all')
 
 #Ruby
 
-#import packages
+#Import packages
 import pandas as pd
 import numpy as np
 import pandasql as sql
 
-#read the train data
+#Read the train data
 train_data = pd.read_csv('aug_train.csv')
 
+#Take a look at the first 10 rows of the dataset
 train_data.head(10)
 
+#Summarize the data
 train_data.describe(include='all')
 
+#Identify the data types of every data point
 train_data.dtypes
 
-#count the NAs in the train data
+#Count the NAs in the train data
 train_data.isnull().sum()
 
 #Drop those who are missing information about their experience
@@ -55,7 +58,7 @@ train_data["last_new_job"] = train_data["last_new_job"].fillna("Not Reported")
 #Make the labels' form in company_size consistent
 train_data["company_size"] = train_data["company_size"].replace("10/49","10-49")
 
-#transform the experience's data
+#Transform the experience's data
 train_data['experience'] = train_data['experience'].replace(["1","2","3","4","5"],"1-5")
 train_data['experience'] = train_data['experience'].replace(["6","7","8","9","10"],"6-10")
 train_data['experience'] = train_data['experience'].replace(["11","12","13","14","15"],"11-15")
