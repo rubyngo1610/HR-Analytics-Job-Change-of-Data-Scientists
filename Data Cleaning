@@ -27,6 +27,11 @@ pd.get_dummies(train_data['relevent_experience'])
 #replacing all na values to blank
 train_data.replace(np.NaN, " ")
 
+#sort if needed
+train_data.sort_values(by=['enrollee_id'],inplace = True)
+
+
+
 #Ruby
 
 #Import packages
