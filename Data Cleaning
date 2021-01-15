@@ -1,11 +1,31 @@
+#Kyle Lee
+
+#import the relevant libraries
 import pandas as pd
+import numpy as np
 
+#import csv file
 train_data = pd.read_csv('aug_train.csv')
-test_data = pd.read_csv('aug_test.csv')
 
-train_data.head()
+#first 10 row of data set, describe attributes
+train_data.head(10)
 train_data.describe(include='all')
 
+#looking at the type of variables in data set
+train_data.dtypes
+
+#Round all values in the variable to 3 decimal places
+train_data['city_development_index'] = round(train_data['city_development_index'],3)
+
+#look for any unique values
+for look in train_data:
+    print(train_data[look].unique())
+
+# changing up categorical to dummy variables(if needed)
+pd.get_dummies(train_data['relevent_experience'])
+
+#replacing all na values to blank
+train_data.replace(np.NaN, " ")
 
 #Ruby
 
