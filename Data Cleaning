@@ -38,7 +38,7 @@ test_data = pd.read_csv('aug_test.csv')
 test_data.dtypes
 
 #round city_development_index values to 3 decimal points
-test_data['city_development_index'] = round(data_train['city_development_index'],3)
+test_data['city_development_index'] = round(test_data['city_development_index'],3)
 
 #replace na values in test_data
 test_data['gender'] = test_data['gender'].replace(np.NaN, "Not Reported")
