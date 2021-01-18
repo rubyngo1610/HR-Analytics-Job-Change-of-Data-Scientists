@@ -102,3 +102,29 @@ train_data['experience'] = train_data['experience'].replace(["1","2","3","4","5"
 train_data['experience'] = train_data['experience'].replace(["6","7","8","9","10"],"6-10")
 train_data['experience'] = train_data['experience'].replace(["11","12","13","14","15"],"11-15")
 train_data['experience'] = train_data['experience'].replace(["16","17","18","19","20"],"16-20")
+
+#read the test data
+test_data = pd.read_csv('aug_test.csv')
+
+#count the NAs in the test data
+test_data.isnull().sum()
+
+#Handle the NAs in test data
+test_data["major_discipline"] = test_data[test_data.enrolled_university == "no_enrollment"]["major_discipline"].fillna("No Major")
+test_data["major_discipline"] = test_data["major_discipline"].fillna("Not Reported")
+test_data["company_size"] = test_data["company_size"].fillna("Not Reported")
+test_data["company_type"] = test_data["company_type"].fillna("Not Reported")
+test_data["last_new_job"] = test_data["last_new_job"].fillna("Not Reported")
+
+#Drop those who are missing information about their experience
+test_data = test_data.dropna(subset=['experience'])
+
+for i in test_data:
+    print(test_data[i].unique())
+    
+test_data["company_size"] = test_data["company_size"].replace("10/49","10-49")
+#train_data['experience']
+test_data['experience'] = test_data['experience'].replace(["1","2","3","4","5"],"1-5")
+test_data['experience'] = test_data['experience'].replace(["6","7","8","9","10"],"6-10")
+test_data['experience'] = test_data['experience'].replace(["11","12","13","14","15"],"11-15")
+test_data['experience'] = test_data['experience'].replace(["16","17","18","19","20"],"16-20")
