@@ -26,8 +26,8 @@ train_data['relevant_experience_dummies'] = pd.get_dummies(train_data['relevent_
 
 #replacing all na values to not reported
 train_data['gender'] = train_data['gender'].replace(np.NaN, "Not Reported")
-train_data['enrolled-university'] = train_data['enrolled-university'].replace(np.NaN, "Not Reported")
-train_data['education-level'] = train_data['education-level'].replace(np.NaN, "Not Reported")
+train_data['enrolled_university'] = train_data['enrolled_university'].replace(np.NaN, "Not Reported")
+train_data['education_level'] = train_data['education_level'].replace(np.NaN, "Not Reported")
 
 #sort if needed
 train_data.sort_values(by=['enrollee_id'],inplace = True)
@@ -42,8 +42,8 @@ test_data['city_development_index'] = round(test_data['city_development_index'],
 
 #replace na values in test_data
 test_data['gender'] = test_data['gender'].replace(np.NaN, "Not Reported")
-test_data['enrolled-university'] = test_data['enrolled-university'].replace(np.NaN, "Not Reported")
-test_data['education-level'] = test_data['education-level'].replace(np.NaN, "Not Reported")
+test_data['enrolled_university'] = test_data['enrolled_university'].replace(np.NaN, "Not Reported")
+test_data['education_level'] = test_data['education_level'].replace(np.NaN, "Not Reported")
 
 
 #Ruby
