@@ -22,7 +22,7 @@ for look in train_data:
     print(train_data[look].unique())
 
 # changing up categorical to dummy variables(if needed)
-pd.get_dummies(train_data['relevent_experience'])
+train_data['relevant_experience_dummies'] = pd.get_dummies(train_data['relevent_experience'])
 
 #replacing all na values to not reported
 train_data['gender'] = train_data['gender'].replace(np.NaN, "Not Reported")
